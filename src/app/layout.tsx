@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Geist_Mono, Outfit } from "next/font/google"
+import { SiteShell } from "@/components/site-shell"
 import { club } from "@/content/club"
 import "./globals.css"
 
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${outfit.variable} ${geistMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <SiteShell>{children}</SiteShell>
+      </body>
     </html>
   )
 }
