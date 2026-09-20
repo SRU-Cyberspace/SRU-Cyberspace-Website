@@ -1,7 +1,5 @@
-import Link from "next/link"
 import { club } from "@/content/club"
-import { Pressable } from "@/components/pressable"
-import { SocialIcon } from "@/components/social-icon"
+import { SocialLinkButton } from "@/components/social-link-button"
 import { SvgUnderline } from "@/components/svg-underline"
 
 export function HitUsUp() {
@@ -17,19 +15,7 @@ export function HitUsUp() {
         <ul className="flex flex-wrap items-center justify-center gap-4">
           {club.socials.map((social) => (
             <li key={social.kind}>
-              <Pressable>
-                <Link
-                  href={social.href}
-                  target={social.kind === "email" ? undefined : "_blank"}
-                  rel={
-                    social.kind === "email" ? undefined : "noopener noreferrer"
-                  }
-                  aria-label={`${club.name} ${social.label}`}
-                  className="grid size-14 place-items-center rounded-full border border-border bg-secondary text-brand no-underline transition-colors hover:border-brand/40 hover:bg-brand hover:text-brand-foreground"
-                >
-                  <SocialIcon kind={social.kind} className="size-6" />
-                </Link>
-              </Pressable>
+              <SocialLinkButton social={social} tone="home" />
             </li>
           ))}
         </ul>

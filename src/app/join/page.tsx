@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { PageHero } from "@/components/page-hero"
 import { Pressable } from "@/components/pressable"
-import { SocialIcon } from "@/components/social-icon"
+import { SocialLinkButton } from "@/components/social-link-button"
 import { buttonVariants } from "@/components/ui/button"
 import { club } from "@/content/club"
 import { cn } from "@/lib/utils"
@@ -96,21 +95,7 @@ export default function JoinPage() {
           <ul className="flex flex-wrap gap-3">
             {club.socials.map((social) => (
               <li key={social.kind}>
-                <Pressable>
-                  <Link
-                    href={social.href}
-                    target={social.kind === "email" ? undefined : "_blank"}
-                    rel={
-                      social.kind === "email"
-                        ? undefined
-                        : "noopener noreferrer"
-                    }
-                    aria-label={`${club.name} ${social.label}`}
-                    className="grid size-12 place-items-center rounded-full bg-white/10 text-brand-foreground no-underline transition-colors hover:bg-gold hover:text-gold-foreground"
-                  >
-                    <SocialIcon kind={social.kind} className="size-5" />
-                  </Link>
-                </Pressable>
+                <SocialLinkButton social={social} tone="join" />
               </li>
             ))}
           </ul>
