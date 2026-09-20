@@ -6,8 +6,9 @@ import { motion, useReducedMotion } from "motion/react"
 import { club } from "@/content/club"
 import { Pressable } from "@/components/pressable"
 import { SvgUnderline } from "@/components/svg-underline"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { useMounted } from "@/hooks/use-mounted"
+import { cn } from "@/lib/utils"
 
 export function HomeHero() {
   const mounted = useMounted()
@@ -36,23 +37,26 @@ export function HomeHero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Pressable>
-              <Button
-                render={<Link href="/join" />}
-                className="rounded-full bg-brand px-6 text-brand-foreground hover:bg-brand/90"
-                size="lg"
+              <Link
+                href="/join"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "rounded-full bg-brand px-6 text-brand-foreground no-underline hover:bg-brand/90"
+                )}
               >
                 Join the Club
-              </Button>
+              </Link>
             </Pressable>
             <Pressable>
-              <Button
-                render={<Link href="/about" />}
-                variant="outline"
-                className="rounded-full border-brand/30 px-6 text-brand hover:bg-brand/5"
-                size="lg"
+              <Link
+                href="/about"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "rounded-full border-brand/30 px-6 text-brand no-underline hover:bg-brand/5"
+                )}
               >
                 What We Do
-              </Button>
+              </Link>
             </Pressable>
           </div>
         </div>

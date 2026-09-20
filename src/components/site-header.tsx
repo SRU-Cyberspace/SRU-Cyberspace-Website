@@ -6,7 +6,7 @@ import { List, X } from "@phosphor-icons/react"
 import { useState } from "react"
 import { club } from "@/content/club"
 import { Pressable } from "@/components/pressable"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function SiteHeader() {
@@ -52,13 +52,15 @@ export function SiteHeader() {
             )
           })}
           <Pressable className="ml-2">
-            <Button
-              render={<Link href="/join" />}
-              className="rounded-full bg-brand px-5 text-brand-foreground hover:bg-brand/90"
-              size="lg"
+            <Link
+              href="/join"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "rounded-full bg-brand px-5 text-brand-foreground no-underline hover:bg-brand/90"
+              )}
             >
               Join
-            </Button>
+            </Link>
           </Pressable>
         </nav>
 
@@ -91,13 +93,16 @@ export function SiteHeader() {
               </Link>
             ))}
             <Pressable className="mt-2 w-full">
-              <Button
-                render={<Link href="/join" onClick={() => setOpen(false)} />}
-                className="w-full rounded-full bg-brand text-brand-foreground hover:bg-brand/90"
-                size="lg"
+              <Link
+                href="/join"
+                onClick={() => setOpen(false)}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full rounded-full bg-brand text-brand-foreground no-underline hover:bg-brand/90"
+                )}
               >
                 Join
-              </Button>
+              </Link>
             </Pressable>
           </nav>
         </div>
