@@ -119,3 +119,83 @@
     text-wrap: balance;
   }
 }
+
+@keyframes social-discord-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(-6deg);
+  }
+  65% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes social-instagram-pop {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.08) rotate(4deg);
+  }
+}
+
+@keyframes social-linkedin-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes social-github-tilt {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes social-email-flap {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(-6deg);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .group:hover .social-motion-discord,
+  .group:focus-visible .social-motion-discord {
+    animation: social-discord-wiggle 280ms ease-out;
+  }
+
+  .group:hover .social-motion-instagram,
+  .group:focus-visible .social-motion-instagram {
+    animation: social-instagram-pop 240ms ease-out;
+  }
+
+  .group:hover .social-motion-linkedin,
+  .group:focus-visible .social-motion-linkedin {
+    animation: social-linkedin-lift 220ms ease-out;
+  }
+
+  .group:hover .social-motion-github,
+  .group:focus-visible .social-motion-github {
+    animation: social-github-tilt 260ms ease-out;
+  }
+
+  .group:hover .social-motion-email,
+  .group:focus-visible .social-motion-email {
+    animation: social-email-flap 250ms ease-out;
+  }
+}
