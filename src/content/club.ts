@@ -89,8 +89,8 @@ export const club = {
   officers: [
     { name: "Tony Waterfall", role: "President" },
     { name: "Nolan Koch", role: "Vice President" },
-    { name: "Nadia", role: "Treasurer" },
-    { name: "Logan W.", role: "Public Relations" },
+    { name: "Logan W.", role: "Treasurer" },
+    { name: "Nadia", role: "Public Relations" },
   ] satisfies Officer[],
   events: [
     {
