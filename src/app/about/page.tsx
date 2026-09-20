@@ -48,8 +48,7 @@ export default function AboutPage() {
             Officers
           </h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">
-            Officer names will appear here once the board confirms them for{" "}
-            {club.schoolYear}.
+            The {club.schoolYear} board.
           </p>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {club.officers.map((officer) => (

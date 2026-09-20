@@ -79,11 +79,10 @@ export const club = {
     },
   ] satisfies SocialLink[],
   officers: [
-    { name: "TBD", role: "President" },
-    { name: "TBD", role: "Vice President" },
-    { name: "TBD", role: "Treasurer" },
-    { name: "TBD", role: "Secretary" },
-    { name: "TBD", role: "Events Lead" },
+    { name: "Tony Waterfall", role: "President" },
+    { name: "Nolan Koch", role: "Vice President" },
+    { name: "Nadia", role: "Treasurer" },
+    { name: "Logan W.", role: "Public Relations" },
   ] satisfies Officer[],
   events: [
     {
