@@ -1,5 +1,11 @@
 "use client"
 
+import {
+  Show,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
@@ -90,11 +96,44 @@ export function SiteHeader() {
               Join
             </Link>
           </Pressable>
+          <div className="ml-2 flex items-center gap-2">
+            <Show when="signed-out">
+              <SignInButton mode="modal">
+                <button
+                  type="button"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "sm" }),
+                    "rounded-full border-brand/30 px-4 text-brand"
+                  )}
+                >
+                  Sign in
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button
+                  type="button"
+                  className={cn(
+                    buttonVariants({ size: "sm" }),
+                    "rounded-full bg-brand px-4 text-brand-foreground"
+                  )}
+                >
+                  Sign up
+                </button>
+              </SignUpButton>
+            </Show>
+            <Show when="signed-in">
+              <UserButton />
+            </Show>
+          </div>
         </nav>
 
-        <motion.button
-          type="button"
-          className="inline-flex size-10 items-center justify-center rounded-md border border-border md:hidden"
+        <div className="flex items-center gap-2 md:hidden">
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
+          <motion.button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -132,6 +171,7 @@ export function SiteHeader() {
             />
           </span>
         </motion.button>
+        </div>
       </div>
 
       <AnimatePresence initial={false}>
@@ -180,7 +220,7 @@ export function SiteHeader() {
                 </motion.div>
               ))}
               <motion.div
-                className="mt-2"
+                className="mt-2 space-y-2"
                 initial={reduceMotion ? false : { opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -201,6 +241,32 @@ export function SiteHeader() {
                     Join
                   </Link>
                 </Pressable>
+                <Show when="signed-out">
+                  <SignInButton mode="modal">
+                    <button
+                      type="button"
+                      className={cn(
+                        buttonVariants({ variant: "outline", size: "lg" }),
+                        "w-full rounded-full border-brand/30 text-brand"
+                      )}
+                      onClick={() => setOpen(false)}
+                    >
+                      Sign in
+                    </button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button
+                      type="button"
+                      className={cn(
+                        buttonVariants({ size: "lg" }),
+                        "w-full rounded-full bg-gold text-gold-foreground"
+                      )}
+                      onClick={() => setOpen(false)}
+                    >
+                      Sign up
+                    </button>
+                  </SignUpButton>
+                </Show>
               </motion.div>
             </nav>
           </motion.div>

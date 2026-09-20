@@ -1,8 +1,11 @@
+import { ClerkProvider } from "@clerk/nextjs"
+import { shadcn } from "@clerk/ui/themes"
 import type { Metadata } from "next"
 import { Geist_Mono, Outfit } from "next/font/google"
 import { SiteShell } from "@/components/site-shell"
 import { club } from "@/content/club"
 import "./globals.css"
+import "@clerk/ui/themes/shadcn.css"
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -30,7 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${outfit.variable} ${geistMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col font-sans">
-        <SiteShell>{children}</SiteShell>
+        <ClerkProvider appearance={{ theme: shadcn }}>
+          <SiteShell>{children}</SiteShell>
+        </ClerkProvider>
       </body>
     </html>
   )
