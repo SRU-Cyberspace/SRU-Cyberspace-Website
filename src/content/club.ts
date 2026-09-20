@@ -30,6 +30,8 @@ export const club = {
   tagline: "Learn security. Build skills. Meet people who care about both.",
   schoolYear: "2026-2027 school year",
   email: "cyberspace@sru.edu",
+  membershipUrl:
+    "https://sru.campuslabs.com/engage/organization/cyberspaceclub",
   location: "Slippery Rock University, Slippery Rock, PA",
   mission:
     "We give Slippery Rock students a place to explore cybersecurity, practice defensive and offensive skills ethically, and grow into professionals who look out for each other.",
@@ -44,6 +46,12 @@ export const club = {
   missionImage: {
     src: "https://picsum.photos/seed/sru-cyberspace-mission/960/720",
     alt: "Campus pathway lined with trees near Old Main",
+  },
+  calendar: {
+    // Google Calendar → Settings → Integrate calendar → Calendar ID
+    calendarId: "TBD",
+    timezone: "America/New_York",
+    title: "Club calendar",
   },
   nav: [
     { label: "Home", href: "/" },
@@ -79,11 +87,10 @@ export const club = {
     },
   ] satisfies SocialLink[],
   officers: [
-    { name: "TBD", role: "President" },
-    { name: "TBD", role: "Vice President" },
-    { name: "TBD", role: "Treasurer" },
-    { name: "TBD", role: "Secretary" },
-    { name: "TBD", role: "Events Lead" },
+    { name: "Tony Waterfall", role: "President" },
+    { name: "Nolan Koch", role: "Vice President" },
+    { name: "Nadia", role: "Treasurer" },
+    { name: "Logan W.", role: "Public Relations" },
   ] satisfies Officer[],
   events: [
     {

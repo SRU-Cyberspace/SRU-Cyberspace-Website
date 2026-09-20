@@ -1,4 +1,5 @@
 import { HitUsUp } from "@/components/hit-us-up"
+import { HomeCalendar } from "@/components/home-calendar"
 import { HomeHero } from "@/components/home-hero"
 import { MissionBand } from "@/components/mission-band"
 import { club } from "@/content/club"
@@ -27,6 +28,7 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
+      <HomeCalendar />
       <HitUsUp />
     </main>
   )

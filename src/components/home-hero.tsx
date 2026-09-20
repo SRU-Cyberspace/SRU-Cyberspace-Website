@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
 import { club } from "@/content/club"
+import { JoinExpandCta } from "@/components/join-expand-cta"
 import { Pressable } from "@/components/pressable"
 import { SvgUnderline } from "@/components/svg-underline"
 import { buttonVariants } from "@/components/ui/button"
@@ -36,17 +37,7 @@ export function HomeHero() {
             {club.tagline}
           </p>
           <div className="flex flex-wrap gap-3">
-            <Pressable>
-              <Link
-                href="/join"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "rounded-full bg-brand px-6 text-brand-foreground no-underline hover:bg-brand/90"
-                )}
-              >
-                Join the Club
-              </Link>
-            </Pressable>
+            <JoinExpandCta />
             <Pressable>
               <Link
                 href="/about"
