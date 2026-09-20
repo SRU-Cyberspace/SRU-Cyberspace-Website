@@ -30,6 +30,8 @@ export const club = {
   tagline: "Learn security. Build skills. Meet people who care about both.",
   schoolYear: "2026-2027 school year",
   email: "cyberspace@sru.edu",
+  membershipUrl:
+    "https://sru.campuslabs.com/engage/organization/cyberspaceclub",
   location: "Slippery Rock University, Slippery Rock, PA",
   mission:
     "We give Slippery Rock students a place to explore cybersecurity, practice defensive and offensive skills ethically, and grow into professionals who look out for each other.",
