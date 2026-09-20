@@ -97,6 +97,17 @@ export function SiteHeader() {
             </Link>
           </Pressable>
           <div className="ml-2 flex items-center gap-2">
+            <Show when="signed-in">
+              <Link
+                href="/tools"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "sm" }),
+                  "rounded-full border-brand/30 px-4 text-brand no-underline"
+                )}
+              >
+                Tools
+              </Link>
+            </Show>
             <Show when="signed-out">
               <SignInButton mode="modal">
                 <button
@@ -241,6 +252,18 @@ export function SiteHeader() {
                     Join
                   </Link>
                 </Pressable>
+                <Show when="signed-in">
+                  <Link
+                    href="/tools"
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "lg" }),
+                      "w-full rounded-full border-brand/30 text-brand no-underline"
+                    )}
+                  >
+                    Tools
+                  </Link>
+                </Show>
                 <Show when="signed-out">
                   <SignInButton mode="modal">
                     <button
