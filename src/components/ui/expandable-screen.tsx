@@ -4,9 +4,12 @@ import {
   createContext,
   useContext,
   useEffect,
+  useRef,
   useState,
   type ReactNode,
+  type SyntheticEvent,
 } from "react"
+import { createPortal } from "react-dom"
 import { X } from "@phosphor-icons/react"
 import { AnimatePresence, motion } from "motion/react"
 
@@ -55,13 +58,16 @@ export function ExpandableScreen({
   lockScroll = true,
 }: ExpandableScreenProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+  const reopenGuardUntil = useRef(0)
 
   const expand = () => {
+    if (Date.now() < reopenGuardUntil.current) return
     setIsExpanded(true)
     onExpandChange?.(true)
   }
 
   const collapse = () => {
+    reopenGuardUntil.current = Date.now() + 400
     setIsExpanded(false)
     onExpandChange?.(false)
   }
@@ -127,7 +133,10 @@ export function ExpandableScreenTrigger({
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             layout={false}
-            onClick={expand}
+            onClick={(event) => {
+              event.stopPropagation()
+              expand()
+            }}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault()
@@ -161,22 +170,47 @@ export function ExpandableScreenContent({
 }: ExpandableScreenContentProps) {
   const { isExpanded, collapse, layoutId, contentRadius, animationDuration } =
     useExpandableScreen()
+  const [mounted, setMounted] = useState(false)
 
-  return (
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const close = (event: SyntheticEvent) => {
+    event.preventDefault()
+    event.stopPropagation()
+    collapse()
+  }
+
+  if (!mounted) return null
+
+  return createPortal(
     <AnimatePresence initial={false}>
-      {isExpanded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-3">
+      {isExpanded ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-3"
+          onClick={(event) => event.stopPropagation()}
+          onPointerDown={(event) => event.stopPropagation()}
+        >
           <motion.div
             layoutId={layoutId}
-            transition={{ duration: animationDuration, ease: [0.23, 1, 0.32, 1] }}
+            transition={{
+              duration: animationDuration,
+              ease: [0.23, 1, 0.32, 1],
+            }}
             style={{ borderRadius: contentRadius }}
             layout
             className={`relative flex h-full w-full overflow-y-auto transform-gpu will-change-transform ${className}`}
+            onClick={(event) => event.stopPropagation()}
           >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              transition={{
+                delay: 0.15,
+                duration: 0.35,
+                ease: [0.23, 1, 0.32, 1],
+              }}
               className="relative z-20 w-full"
             >
               {children}
@@ -185,7 +219,8 @@ export function ExpandableScreenContent({
             {showCloseButton ? (
               <motion.button
                 type="button"
-                onClick={collapse}
+                onPointerDown={close}
+                onClick={close}
                 className={`absolute right-4 top-4 z-30 flex size-10 items-center justify-center rounded-full transition-colors sm:right-6 sm:top-6 ${
                   closeButtonClassName ||
                   "bg-transparent text-brand-foreground hover:bg-brand-foreground/10"
@@ -197,8 +232,9 @@ export function ExpandableScreenContent({
             ) : null}
           </motion.div>
         </div>
-      )}
-    </AnimatePresence>
+      ) : null}
+    </AnimatePresence>,
+    document.body
   )
 }
 

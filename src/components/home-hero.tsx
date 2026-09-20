@@ -37,9 +37,7 @@ export function HomeHero() {
             {club.tagline}
           </p>
           <div className="flex flex-wrap gap-3">
-            <Pressable>
-              <JoinExpandCta />
-            </Pressable>
+            <JoinExpandCta />
             <Pressable>
               <Link
                 href="/about"
