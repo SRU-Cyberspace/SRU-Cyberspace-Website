@@ -47,6 +47,12 @@ export const club = {
     src: "https://picsum.photos/seed/sru-cyberspace-mission/960/720",
     alt: "Campus pathway lined with trees near Old Main",
   },
+  calendar: {
+    // Google Calendar → Settings → Integrate calendar → Calendar ID
+    calendarId: "TBD",
+    timezone: "America/New_York",
+    title: "Club calendar",
+  },
   nav: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
