@@ -3,8 +3,9 @@ import Link from "next/link"
 import { PageHero } from "@/components/page-hero"
 import { Pressable } from "@/components/pressable"
 import { SocialIcon } from "@/components/social-icon"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { club } from "@/content/club"
+import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Join",
@@ -54,29 +55,28 @@ export default function JoinPage() {
 
         <div className="mt-12 flex flex-wrap gap-3">
           <Pressable>
-            <Button
-              render={
-                <a
-                  href={discord?.href ?? `mailto:${club.email}`}
-                  target={discord ? "_blank" : undefined}
-                  rel={discord ? "noopener noreferrer" : undefined}
-                />
-              }
-              className="rounded-full bg-brand px-6 text-brand-foreground hover:bg-brand/90"
-              size="lg"
+            <a
+              href={discord?.href ?? `mailto:${club.email}`}
+              target={discord ? "_blank" : undefined}
+              rel={discord ? "noopener noreferrer" : undefined}
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "rounded-full bg-brand px-6 text-brand-foreground no-underline hover:bg-brand/90"
+              )}
             >
               Open Discord
-            </Button>
+            </a>
           </Pressable>
           <Pressable>
-            <Button
-              render={<a href={`mailto:${club.email}`} />}
-              variant="outline"
-              className="rounded-full border-brand/30 px-6 text-brand hover:bg-brand/5"
-              size="lg"
+            <a
+              href={`mailto:${club.email}`}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "rounded-full border-brand/30 px-6 text-brand no-underline hover:bg-brand/5"
+              )}
             >
               Email {club.email}
-            </Button>
+            </a>
           </Pressable>
         </div>
       </section>

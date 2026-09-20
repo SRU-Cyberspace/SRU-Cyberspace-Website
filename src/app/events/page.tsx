@@ -2,8 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { PageHero } from "@/components/page-hero"
 import { Pressable } from "@/components/pressable"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { club } from "@/content/club"
+import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Events",
@@ -67,13 +68,15 @@ export default function EventsPage() {
           </ul>
           <div className="mt-12">
             <Pressable>
-              <Button
-                render={<Link href="/join" />}
-                className="rounded-full bg-brand px-6 text-brand-foreground hover:bg-brand/90"
-                size="lg"
+              <Link
+                href="/join"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "rounded-full bg-brand px-6 text-brand-foreground no-underline hover:bg-brand/90"
+                )}
               >
                 Join and get updates
-              </Button>
+              </Link>
             </Pressable>
           </div>
         </div>
